@@ -6,78 +6,79 @@ import requests
 from unidecode import unidecode
 import jinja2
 
-# OpenWeatherMap API key
-appid = "xxxxxxxxxxxx"  # Replace with your actual OpenWeatherMap API key
+# API keys
+owm_api_key = "xxxxxxx"  # Replace with your actual OpenWeatherMap API key
+geo_api_key = "xxxxxxx"  # Replace with your actual ipgeolocation.io API key
 
 icons = {
     # clear
-    800: '☀️', # clear sky
+    800: '☀️',  # clear sky
 
     # clouds
-    801: '🌤', # few clouds
-    802: '⛅️', # scattered clouds
-    803: '🌥', # broken clouds
-    804: '☁️', # overcast clouds
+    801: '🌤',  # few clouds
+    802: '⛅️',  # scattered clouds
+    803: '🌥',  # broken clouds
+    804: '☁️',  # overcast clouds
 
     # drizzle
-    300: '🌨', # light intensity drizzle
-    301: '🌨', # drizzle
-    302: '🌨', # heavy intensity drizzle
-    310: '🌨', # light intensity drizzle rain
-    311: '🌨', # drizzle rain
-    312: '🌨', # heavy intensity drizzle rain
-    313: '🌨', # shower rain and drizzle
-    314: '🌨', # heavy shower rain and drizzle
-    321: '🌨', # shower drizzle
+    300: '🌨',  # light intensity drizzle
+    301: '🌨',  # drizzle
+    302: '🌨',  # heavy intensity drizzle
+    310: '🌨',  # light intensity drizzle rain
+    311: '🌨',  # drizzle rain
+    312: '🌨',  # heavy intensity drizzle rain
+    313: '🌨',  # shower rain and drizzle
+    314: '🌨',  # heavy shower rain and drizzle
+    321: '🌨',  # shower drizzle
 
     # rain
-    500: '🌨', # light rain
-    501: '🌨', # moderate rain
-    502: '🌨', # heavy intensity rain
-    503: '🌨', # very heavy rain
-    504: '🌨', # extreme rain
-    511: '🌨', # freezing rain
-    520: '🌨', # light intensity shower rain
-    521: '🌨', # shower rain
-    522: '🌨', # heavy intensity shower rain
-    531: '🌨', # ragged shower rain
+    500: '🌨',  # light rain
+    501: '🌨',  # moderate rain
+    502: '🌨',  # heavy intensity rain
+    503: '🌨',  # very heavy rain
+    504: '🌨',  # extreme rain
+    511: '🌨',  # freezing rain
+    520: '🌨',  # light intensity shower rain
+    521: '🌨',  # shower rain
+    522: '🌨',  # heavy intensity shower rain
+    531: '🌨',  # ragged shower rain
 
     # thunderstorm
-    200: '⛈', # thunderstorm with light rain
-    201: '⛈', # thunderstorm with rain
-    202: '⛈', # thunderstorm with heavy rain
-    210: '⛈', # light thunderstorm
-    211: '⛈', # thunderstorm
-    212: '⛈', # heavy thunderstorm
-    221: '⛈', # ragged thunderstorm
-    230: '⛈', # thunderstorm with light drizzle
-    231: '⛈', # thunderstorm with drizzle
-    232: '⛈', # thunderstorm with heavy drizzle
+    200: '⛈',  # thunderstorm with light rain
+    201: '⛈',  # thunderstorm with rain
+    202: '⛈',  # thunderstorm with heavy rain
+    210: '⛈',  # light thunderstorm
+    211: '⛈',  # thunderstorm
+    212: '⛈',  # heavy thunderstorm
+    221: '⛈',  # ragged thunderstorm
+    230: '⛈',  # thunderstorm with light drizzle
+    231: '⛈',  # thunderstorm with drizzle
+    232: '⛈',  # thunderstorm with heavy drizzle
 
     # snow
-    600: '❄️', # light snow
-    601: '❄️', # Snow
-    602: '❄️', # Heavy snow
-    611: '❄️', # Sleet
-    612: '❄️', # Light shower sleet
-    613: '❄️', # Shower sleet
-    615: '❄️', # Light rain and snow
-    616: '❄️', # Rain and snow
-    620: '❄️', # Light shower snow
-    621: '❄️', # Shower snow
-    622: '❄️', # Heavy shower snow
+    600: '❄️',  # light snow
+    601: '❄️',  # Snow
+    602: '❄️',  # Heavy snow
+    611: '❄️',  # Sleet
+    612: '❄️',  # Light shower sleet
+    613: '❄️',  # Shower sleet
+    615: '❄️',  # Light rain and snow
+    616: '❄️',  # Rain and snow
+    620: '❄️',  # Light shower snow
+    621: '❄️',  # Shower snow
+    622: '❄️',  # Heavy shower snow
 
     # atmosphere
-    701: '', # mist
-    711: '', # smoke
-    721: '', # haze
-    731: '', # sand/dust whirls
-    741: '󰖑', # fog
-    751: '', # sand
-    761: '', # dust
-    762: '🌋', # volcanic ash
-    771: '💨', # squalls
-    781: '🌪', # tornado
+    701: '',  # mist
+    711: '',  # smoke
+    721: '',  # haze
+    731: '',  # sand/dust whirls
+    741: '󰖑',  # fog
+    751: '',  # sand
+    761: '',  # dust
+    762: '🌋',  # volcanic ash
+    771: '💨',  # squalls
+    781: '🌪',  # tornado
 }
 
 
@@ -99,7 +100,8 @@ class _WeatherInfo():
         self.icon = icons.get(self._condition_id, '🌦')  # Default icon
 
     def __getitem__(self, item):
-         return getattr(self, item)
+        return getattr(self, item)
+
 
 class WeatherMan(object):
     def __init__(self, owm_api_key, city_id=None, lat=None, lon=None, units='metric'):
@@ -142,7 +144,8 @@ class WeatherMan(object):
         self.next = _WeatherInfo(d["list"][1])
 
     def __getitem__(self, item):
-         return getattr(self, item)
+        return getattr(self, item)
+
 
 def get_public_ip():
     try:
@@ -154,9 +157,9 @@ def get_public_ip():
         print(f"Error retrieving public IP: {e}")
         return None
 
+
 def get_location(ip_address):
-    api_key = 'xxxxxxxxxxxx'  # Replace with your actual ipgeolocation.io API key
-    url = f'https://api.ipgeolocation.io/ipgeo?apiKey={api_key}&ip={ip_address}'
+    url = f'https://api.ipgeolocation.io/ipgeo?apiKey={geo_api_key}&ip={ip_address}'
 
     try:
         response = requests.get(url)
@@ -175,13 +178,14 @@ def get_location(ip_address):
         print(f"Error retrieving geolocation data: {e}")
         return None, None
 
+
 def main(city_id, lat, lon, template):
     ip_address = get_public_ip()
     if ip_address:
         lat, lon = get_location(ip_address)
         if lat and lon:
             # Get weather data
-            weather = WeatherMan(appid, city_id, lat, lon)
+            weather = WeatherMan(owm_api_key, city_id, lat, lon)
             t = jinja2.Template(template)
             print(t.render(city=weather.city, current=weather.current, next=weather.next))
         else:
@@ -190,6 +194,7 @@ def main(city_id, lat, lon, template):
     else:
         print("Could not retrieve public IP address.")
         return
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
