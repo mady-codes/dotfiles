@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Install terminal emulator and file manager
 echo "Installing Kitty and Thunar..."
 sudo pacman -S --needed --noconfirm \
