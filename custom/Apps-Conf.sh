@@ -64,7 +64,7 @@ echo "Themes copied successfully."
 
 # Create symlink for assets folder
 echo "Creating symlink for assets folder..."
-ln -s /home/vishnu/.themes/Dracula/assets "$HOME/.config/assets" || { echo "Failed to create symlink"; exit 1; }
+ln -s ~/.themes/Dracula/assets "$HOME/.config/assets" || { echo "Failed to create symlink"; exit 1; }
 echo "Symlink for assets folder created successfully."
 
 # Copy gtk-4.0 folder to ~/.config
