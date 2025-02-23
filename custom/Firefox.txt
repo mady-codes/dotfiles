@@ -1,0 +1,5 @@
+about:config
+
+    privacy.resistFingerprinting = false
+    privacy.fingerprintingProtection = true
+    privacy.fingerprintingProtection.overrides = +AllTargets,-CSSPrefersColorScheme
