@@ -1,13 +1,5 @@
 #!/bin/bash
 
-# Create and navigate to the temp directory
-mkdir -p ~/temp
-cd ~/temp || { echo "Failed to change directory to ~/temp"; exit 1; }
-
-# Clone the dotfiles repository
-git clone https://github.com/mady-codes/dotfiles.git || { echo "Failed to clone repository"; exit 1; }
-cd ~ || { echo "Failed to change directory to home"; exit 1; }
-
 # Replace pacman.conf
 sudo rm -rf /etc/pacman.conf
 sudo cp -rf ~/temp/dotfiles/custom/pacman.conf /etc/ || { echo "Failed to copy pacman.conf"; exit 1; }
