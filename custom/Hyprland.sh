@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Install Hyprland and related packages from AUR
 echo "Installing Hyprland and related packages..."
 yay -S --needed --noconfirm \
