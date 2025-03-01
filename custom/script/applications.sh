@@ -92,10 +92,13 @@ echo "Copying icons..."
 cp -rf ~/temp/dotfiles/custom/.icons/* "$HOME/.icons/" || { echo "Failed to copy icons"; exit 1; }
 echo "Icons copied successfully."
 
+echo "Installing Android Tweaks"
 sudo pacman -S --needed --noconfirm mtpfs || { echo "Failed to install mtpfs with pacman"; exit 1; }
 yay -S --needed --noconfirm jmtpfs || { echo "Failed to install jmtpfs with yay"; exit 1; }
 sudo pacman -Sy --needed --noconfirm gvfs-mtp || { echo "Failed to install gvfs-mtp with pacman"; exit 1; }
 sudo pacman -Sy --needed --noconfirm gvfs-gphoto2 || { echo "Failed to install gvfs-gphoto2 with pacman"; exit 1; }
+echo "Android Tweaks Installed successfully."
 
+echo "Activating Bluetooth..."
 sudo systemctl enable bluetooth.service || { echo "Failed to enable bluetooth service"; exit 1; }
-chsh -s /bin/zsh || { echo "Failed to change shell to zsh"; exit 1; }
+echo "Bluetooth Activated Successfully"
