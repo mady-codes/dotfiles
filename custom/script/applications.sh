@@ -51,6 +51,11 @@ yay -S --needed --noconfirm \
 
 yay -S --needed --noconfirm qt6ct-kde || { echo "Failed to install qt6ct-kde with yay"; exit 1; }
 
+# Copy everything from ~/temp/dotfiles/zsh/ directory to home directory
+echo "Copying Zsh configuration to home directory..."
+cp -rf ~/temp/dotfiles/zsh/{*,.*} "$HOME/" || { echo "Failed to copy Zsh configuration"; exit 1; }
+echo "Zsh configuration copied to home directory."
+
 # Check if .themes directory exists in the home directory
 if [ ! -d "$HOME/.themes" ]; then
     echo ".themes directory does not exist. Creating it now..."
