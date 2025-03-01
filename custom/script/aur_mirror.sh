@@ -26,3 +26,8 @@ yay -S rate-mirrors --noconfirm || { echo "Failed to install rate-mirrors"; exit
 rate-mirrors --protocol https arch | sudo tee /etc/pacman.d/mirrorlist || { echo "Failed to update mirrorlist"; exit 1; }
 sudo pacman -Syy || { echo "Failed to sync package database"; exit 1; }
 echo "Mirrorlist updated."
+
+# Install mkinitcpio-firmware
+echo "Installing mkinitcpio-firmware"
+yay -S mkinitcpio-firmware --noconfirm || { echo "Failed to install mkinitcpio-firmware"; exit 1; }
+echo "mkinitcpio-firmware installed."
