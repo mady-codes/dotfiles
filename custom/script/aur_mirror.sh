@@ -15,7 +15,7 @@ mkdir -p ~/aur
 cd ~/aur || { echo "Failed to change directory to ~/aur"; exit 1; }
 sudo pacman -S --needed git base-devel || { echo "Failed to install base-devel"; exit 1; }
 git clone https://aur.archlinux.org/yay.git || { echo "Failed to clone yay repository"; exit 1; }
-cd yay || { echo "Failed to change directory to yay"; exit 1; }
+cd ~/aur/yay || { echo "Failed to change directory to yay"; exit 1; }
 makepkg -si || { echo "Failed to make and install yay"; exit 1; }
 cd ~
 echo "AUR helper installed."
