@@ -1,5 +1,12 @@
+Firefox
+
 about:config
 
     privacy.resistFingerprinting = false
     privacy.fingerprintingProtection = true
     privacy.fingerprintingProtection.overrides = +AllTargets,-CSSPrefersColorScheme
+
+Thunar
+
+kitty --directory %f
+
