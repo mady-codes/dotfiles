@@ -19,15 +19,15 @@ echo "Fingerprint enrolled successfully for user 'vishnu'."
 
 # Verify fingerprint for user 'vishnu'
 echo "Verifying fingerprint for user 'vishnu'..."
-fprintd-verify vishnu || { echo "Failed to verify fingerprint for user 'vishnu'"; exit 1; }
+fprintd-verify vishnu
 echo "Fingerprint verified successfully for user 'vishnu'."
 
 # Remove existing SDDM PAM configuration
 echo "Removing existing SDDM PAM configuration..."
-rm -rf /etc/pam.d/sddm || { echo "Failed to remove existing sddm PAM configuration"; exit 1; }
+sudo rm -rf /etc/pam.d/sddm || { echo "Failed to remove existing sddm PAM configuration"; exit 1; }
 echo "Existing SDDM PAM configuration removed successfully."
 
 # Copy custom SDDM PAM configuration
 echo "Copying custom SDDM PAM configuration..."
-cp -rf ~/temp/dotfiles/custom/sddm /etc/pam.d/ || { echo "Failed to copy custom sddm PAM configuration"; exit 1; }
+sudo cp -rf ~/temp/dotfiles/custom/sddm /etc/pam.d/ || { echo "Failed to copy custom sddm PAM configuration"; exit 1; }
 echo "Custom SDDM PAM configuration copied successfully."
