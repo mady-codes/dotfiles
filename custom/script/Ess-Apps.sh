@@ -38,6 +38,6 @@ echo "Configuring GRUB theme..."
 sudo pacman -S --needed --noconfirm os-prober || { echo "Failed to install os-prober"; exit 1; }
 sudo rm -rf /etc/default/grub || { echo "Failed to remove existing GRUB config"; exit 1; }
 sudo cp -rf ~/temp/dotfiles/custom/grub /etc/default/ || { echo "Failed to copy new GRUB config"; exit 1; }
-sudo cp -rf sekiro /usr/share/grub/themes || { echo "Failed to copy GRUB theme"; exit 1; }
+sudo cp -rf ~/temp/dotfiles/sekiro /usr/share/grub/themes || { echo "Failed to copy GRUB theme"; exit 1; }
 sudo grub-mkconfig -o /boot/grub/grub.cfg || { echo "Failed to generate GRUB config"; exit 1; }
 echo "GRUB theme configured."
