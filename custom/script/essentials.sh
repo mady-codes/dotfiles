@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # Install terminal emulator and file manager
-echo "Installing Kitty and Thunar..."
+echo "Installing Polkit, Kitty and Thunar..."
 sudo pacman -S --needed --noconfirm \
+    polkit-gnome \
     kitty \
     kitty-shell-integration \
     kitty-terminfo \
@@ -12,8 +13,8 @@ sudo pacman -S --needed --noconfirm \
     thunar-shares-plugin \
     thunar-vcs-plugin \
     thunar-volman \
-    xarchiver || { echo "Failed to install Kitty and Thunar"; exit 1; }
-echo "Kitty and Thunar installed."
+    xarchiver || { echo "Failed to install Polkit, Kitty and Thunar"; exit 1; }
+echo "Polkit, Kitty and Thunar installed."
 
 # Install SDDM packages
 echo "Installing SDDM packages..."
