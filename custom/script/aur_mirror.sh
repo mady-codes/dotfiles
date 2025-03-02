@@ -27,7 +27,12 @@ rate-mirrors --protocol https arch | sudo tee /etc/pacman.d/mirrorlist || { echo
 sudo pacman -Syy || { echo "Failed to sync package database"; exit 1; }
 echo "Mirrorlist updated."
 
-# Install mkinitcpio-firmware
+# Install mkinitcpio-firmware and add console font
+echo "Editing vconsole.conf"
+sudo sh -c 'echo "FONT=lat9w-16" >> /etc/vconsole.conf' || { echo "Failed to update vconsole.conf"; exit 1; }
+echo "vconsole.conf updated"
+
+
 echo "Installing mkinitcpio-firmware"
 yay -S mkinitcpio-firmware --noconfirm || { echo "Failed to install mkinitcpio-firmware"; exit 1; }
-echo "mkinitcpio-firmware installed."
+echo "mkinitcpio-firmware installed." 
