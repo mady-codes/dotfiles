@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "Installing essential packages with pacman..."
 sudo pacman -S --needed --noconfirm \
     zsh \
     fzf \
@@ -15,8 +16,10 @@ sudo pacman -S --needed --noconfirm \
     qt5-wayland \
     qt6-wayland \
     qt5ct \
-    kvantum-qt5 || { echo "Failed to install packages with pacman"; exit 1; }
+    kvantum-qt5 || { echo "Failed to install essential packages with pacman"; exit 1; }
+echo "Essential packages installed successfully."
 
+echo "Installing Python packages with pacman..."
 sudo pacman -S --needed --noconfirm \
     python \
     python-autocommand \
@@ -40,16 +43,21 @@ sudo pacman -S --needed --noconfirm \
     python-unidecode \
     python-urllib3 \
     python-wheel || { echo "Failed to install Python packages with pacman"; exit 1; }
+echo "Python packages installed successfully."
 
+echo "Installing additional packages with yay..."
 yay -S --needed --noconfirm \
     librewolf-bin \
     waybar-git \
     swww-git \
     blueberry-wayland \
     janus \
-    brightnessctl-git || { echo "Failed to install packages with yay"; exit 1; }
+    brightnessctl-git || { echo "Failed to install additional packages with yay"; exit 1; }
+echo "Additional packages installed successfully."
 
+echo "Installing qt6ct-kde with yay..."
 yay -S --needed --noconfirm qt6ct-kde || { echo "Failed to install qt6ct-kde with yay"; exit 1; }
+echo "qt6ct-kde installed successfully."
 
 # Copy everything from ~/temp/dotfiles/zsh/ directory to home directory
 echo "Copying Zsh configuration to home directory..."
@@ -92,7 +100,7 @@ echo "Copying icons..."
 cp -rf ~/temp/dotfiles/custom/.icons/* "$HOME/.icons/" || { echo "Failed to copy icons"; exit 1; }
 echo "Icons copied successfully."
 
-echo "Installing Android Tweaks"
+echo "Installing Android Tweaks..."
 sudo pacman -S --needed --noconfirm mtpfs || { echo "Failed to install mtpfs with pacman"; exit 1; }
 yay -S --needed --noconfirm jmtpfs || { echo "Failed to install jmtpfs with yay"; exit 1; }
 sudo pacman -Sy --needed --noconfirm gvfs-mtp || { echo "Failed to install gvfs-mtp with pacman"; exit 1; }
@@ -101,4 +109,27 @@ echo "Android Tweaks Installed successfully."
 
 echo "Activating Bluetooth..."
 sudo systemctl enable bluetooth.service || { echo "Failed to enable bluetooth service"; exit 1; }
-echo "Bluetooth Activated Successfully"
+echo "Bluetooth Activated Successfully."
+
+echo "Installing archive utilities packages with pacman..."
+sudo pacman -S --needed --noconfirm \
+    cpio \
+    lzo \
+    p7zip \
+    unrar \
+    unzip \
+    zip \
+    arj \
+    binutils \
+    bzip2 \
+    gzip \
+    lha \
+    lrzip \
+    lz4 \
+    lzip \
+    lzop \
+    tar \
+    xdg-utils \
+    xz \
+    zstd || { echo "Failed to install archive utilities packages with pacman"; exit 1; }
+echo "Archive utilities packages installed successfully."
