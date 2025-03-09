@@ -59,11 +59,6 @@ echo "Installing qt6ct-kde with yay..."
 yay -S --needed --noconfirm qt6ct-kde || { echo "Failed to install qt6ct-kde with yay"; exit 1; }
 echo "qt6ct-kde installed successfully."
 
-# Copy everything from ~/temp/dotfiles/zsh/ directory to home directory
-echo "Copying Zsh configuration to home directory..."
-cp -rf ~/temp/dotfiles/zsh/{*,.*} "$HOME/" || { echo "Failed to copy Zsh configuration"; exit 1; }
-echo "Zsh configuration copied to home directory."
-
 # Check if .themes directory exists in the home directory
 if [ ! -d "$HOME/.themes" ]; then
     echo ".themes directory does not exist. Creating it now..."
@@ -133,3 +128,9 @@ sudo pacman -S --needed --noconfirm \
     xz \
     zstd || { echo "Failed to install archive utilities packages with pacman"; exit 1; }
 echo "Archive utilities packages installed successfully."
+
+# Copy everything from ~/temp/dotfiles/zsh/ directory to home directory
+echo "Copying Zsh configuration to home directory..."
+cp -rf ~/temp/dotfiles/zsh/.zshrc "$HOME/" || { echo "Failed to copy ZSHRC"; exit 1; }
+cp -rf ~/temp/dotfiles/zsh/.zsh "$HOME/" || { echo "Failed to copy ZSH"; exit 1; }
+echo "Zsh configuration copied to home directory."
