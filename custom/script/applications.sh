@@ -129,6 +129,14 @@ sudo pacman -S --needed --noconfirm \
     zstd || { echo "Failed to install archive utilities packages with pacman"; exit 1; }
 echo "Archive utilities packages installed successfully."
 
+echo "Installing clipboard & Emoji packages with pacman..."
+sudo pacman -S --needed --noconfirm \
+    copyq \
+    wl-clipboard \
+    wtype \
+    rofi-emoji || { echo "Failed to install clipboard & Emoji packages with pacman"; exit 1; }
+echo "clipboard & Emoji packages installed successfully."
+
 # Copy everything from ~/temp/dotfiles/zsh/ directory to home directory
 echo "Copying Zsh configuration to home directory..."
 cp -rf ~/temp/dotfiles/zsh/.zshrc "$HOME/" || { echo "Failed to copy ZSHRC"; exit 1; }
