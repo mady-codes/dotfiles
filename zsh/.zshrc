@@ -1,5 +1,4 @@
-
-HISTFILE=~/.histfile
+HISTFILE=~/.zsh-history
 HISTSIZE=10000
 SAVEHIST=10000
 zstyle :compinstall filename '/home/vishnu/.zshrc'
